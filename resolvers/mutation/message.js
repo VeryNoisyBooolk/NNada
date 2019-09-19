@@ -6,7 +6,12 @@ module.exports = {
     const createdMessage = await Message
       .query()
       .insert(message);
-    pubsub.publish(MESSAGE_CREATED, { messageCreated: createdMessage });
-    return createdMessage;
+
+    const resultMessage = await Message
+      .query()
+      .eager('user')
+      .findById(createdMessage.id);
+    pubsub.publish(MESSAGE_CREATED, { messageCreated: resultMessage });
+    return resultMessage;
   },
 };

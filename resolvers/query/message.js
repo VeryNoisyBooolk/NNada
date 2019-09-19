@@ -5,6 +5,7 @@ module.exports = {
     return Message
       .query()
       .orderBy('created_at')
+      .eager('user')
       .limit(100);
   },
 };
