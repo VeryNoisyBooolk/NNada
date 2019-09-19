@@ -6,12 +6,12 @@
     "start": "node bin/www",
     "dev": "./node_modules/.bin/nodemon bin/www",
     "prd": "pm2 start bin/www",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "knex": "knex"
   },
   "dependencies": {
     "apollo-server-koa": "^2.9.3",
     "debug": "^4.1.1",
-    "dotenv": "^8.1.0",
     "knex": "^0.19.4",
     "koa": "^2.7.0",
     "koa-bodyparser": "^4.2.1",

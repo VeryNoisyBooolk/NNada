@@ -1,0 +1,21 @@
+version: '3.7'
+services:
+  backend:
+    image: backend
+    build:
+      context: .
+    depends_on:
+      - postgres
+    command: bash -c 'while !</dev/tcp/postgres/5432; do sleep 1; done; yarn knex migrate:latest; yarn start'
+    ports:
+      - 3000:3000
+    environment:
+      - POSTGRES_HOST=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+  postgres:
+    image: postgres
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
